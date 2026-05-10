@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Form : ajouter employé + badge "Location interne" dans group@client -->
+    <record id="routeo_rental_order_view_form_inherit_hr" model="ir.ui.view">
+        <field name="name">routeo.rental.order.form.inherit.hr</field>
+        <field name="model">routeo.rental.order</field>
+        <field name="inherit_id" ref="routeo_rental.routeo_rental_order_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='client']" position="inside">
+                <field name="employee_id"
+                       readonly="state != 'draft'"
+                       options="{'no_create': True}"/>
+                <field name="is_internal"
+                       readonly="1"
+                       invisible="not is_internal"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- List : decoration-info + colonne employé optionnelle + is_internal invisible -->
+    <record id="routeo_rental_order_view_list_inherit_hr" model="ir.ui.view">
+        <field name="name">routeo.rental.order.list.inherit.hr</field>
+        <field name="model">routeo.rental.order</field>
+        <field name="inherit_id" ref="routeo_rental.routeo_rental_order_view_list"/>
+        <field name="arch" type="xml">
+            <list position="attributes">
+                <attribute name="decoration-info">is_internal == True</attribute>
+            </list>
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="employee_id" optional="hide"/>
+                <field name="is_internal" column_invisible="True"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Search : 2 filtres avant filter to_confirm -->
+    <record id="routeo_rental_order_view_search_inherit_hr" model="ir.ui.view">
+        <field name="name">routeo.rental.order.search.inherit.hr</field>
+        <field name="model">routeo.rental.order</field>
+        <field name="inherit_id" ref="routeo_rental.routeo_rental_order_view_search"/>
+        <field name="arch" type="xml">
+            <xpath expr="//filter[@name='to_confirm']" position="before">
+                <filter name="filter_internal"
+                        string="Location interne"
+                        domain="[('is_internal', '=', True)]"/>
+                <filter name="filter_my_team"
+                        string="Mes équipes"
+                        domain="[('employee_id.parent_id.user_id', '=', uid)]"/>
+                <separator/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

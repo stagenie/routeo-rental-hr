@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_hr_employee_routeo_commercial,hr.employee routeo commercial read,hr.model_hr_employee,routeo_rental.group_rental_commercial,1,0,0,0
+access_hr_employee_routeo_warehouse,hr.employee routeo atelier read,hr.model_hr_employee,routeo_rental.group_rental_warehouse,1,0,0,0
+access_hr_employee_routeo_manager,hr.employee routeo manager read,hr.model_hr_employee,routeo_rental.group_rental_manager,1,0,0,0
