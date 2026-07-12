@@ -1,3 +1,8 @@
+> 📘 **Code compagnon de l'ebook _« Développer sur Odoo 19 — Édition Routeo »_ — OdooSkills.**
+> 👉 **[Obtenir l'ebook](https://odooskills.com/shop/formation-technique-odoo-19-ebook-3)** — le livre explique pas à pas tout le code de ce dépôt.
+
+---
+
 # Routeo Rental HR
 
 Extension RH du module **Routeo Rental** : permet d'attacher un employé à un bon de location, calcule automatiquement la remise interne de 30 % sur le prix journalier, expose les filtres « Location interne » et « Mes équipes » dans la searchview.
